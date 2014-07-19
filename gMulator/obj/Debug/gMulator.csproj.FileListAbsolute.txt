@@ -1,0 +1,10 @@
+E:\Projects\gmsv_gsharp_win32\bin\gMulator.exe.config
+E:\Projects\gmsv_gsharp_win32\bin\gMulator.exe
+E:\Projects\gmsv_gsharp_win32\bin\gMulator.pdb
+E:\Projects\gmsv_gsharp_win32\gMulator\obj\Debug\gMulator.csprojResolveAssemblyReference.cache
+E:\Projects\gmsv_gsharp_win32\gMulator\obj\Debug\gMulator.exe
+E:\Projects\gmsv_gsharp_win32\gMulator\obj\Debug\gMulator.pdb
+E:\Projects\gmsv_gsharp_win32\bin\script\autorun.lua
+E:\Projects\gmsv_gsharp_win32\bin\script\Requires.cs
+E:\Projects\gmsv_gsharp_win32\bin\script\IO.cs
+E:\Projects\gmsv_gsharp_win32\bin\script\PrintFuncs.cs

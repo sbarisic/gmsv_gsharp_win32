@@ -1,0 +1,5 @@
+E:\Program Files\DarkSteam\client\steamapps\common\garrysmod\garrysmod\lua\bin\gmsv_gsharp_win32.dll
+E:\Projects\gmsv_gsharp_win32\gmsv_gsharp_win32\obj\Debug\gmsv_gsharp_win32.dll
+E:\Projects\gmsv_gsharp_win32\gmsv_gsharp_win32\obj\Debug\gmsv_gsharp_win32.pdb
+E:\Program Files\DarkSteam\client\steamapps\common\garrysmod\garrysmod\lua\bin\gmsv_gsharp_win32.pdb
+E:\Projects\gmsv_gsharp_win32\gmsv_gsharp_win32\obj\Debug\gmsv_gsharp_win32.csprojResolveAssemblyReference.cache

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gmsv_gsharp_win32", "gmsv_gsharp_win32\gmsv_gsharp_win32.csproj", "{D8E32A1F-2508-49E4-97D6-9D63CFC9420B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gMulator", "gMulator\gMulator.csproj", "{751E1014-35D3-4894-B5E1-BE4D8623DEFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8E32A1F-2508-49E4-97D6-9D63CFC9420B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8E32A1F-2508-49E4-97D6-9D63CFC9420B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8E32A1F-2508-49E4-97D6-9D63CFC9420B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8E32A1F-2508-49E4-97D6-9D63CFC9420B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{751E1014-35D3-4894-B5E1-BE4D8623DEFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{751E1014-35D3-4894-B5E1-BE4D8623DEFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{751E1014-35D3-4894-B5E1-BE4D8623DEFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{751E1014-35D3-4894-B5E1-BE4D8623DEFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
