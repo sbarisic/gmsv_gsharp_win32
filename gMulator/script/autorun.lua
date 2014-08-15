@@ -42,3 +42,12 @@ end
 
 C = Color(1)
 
+
+function T(n)
+	Thread.Spawn(function()
+		for i = 0, 3 do
+			Thread.Print("Hello from thread " .. tostring(n) .. " - " .. tostring(i))
+			Thread.Sleep(10);
+		end
+	end)
+end

@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gmsv_gsharp_win32", "gmsv_gsharp_win32\gmsv_gsharp_win32.csproj", "{D8E32A1F-2508-49E4-97D6-9D63CFC9420B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gMulator", "gMulator\gMulator.csproj", "{751E1014-35D3-4894-B5E1-BE4D8623DEFD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D8E32A1F-2508-49E4-97D6-9D63CFC9420B} = {D8E32A1F-2508-49E4-97D6-9D63CFC9420B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

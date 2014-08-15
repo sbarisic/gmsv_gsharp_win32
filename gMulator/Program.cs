@@ -105,13 +105,6 @@ namespace gMulator {
 				Emul.ErrorCheck(L, Lua.PCall(L, 1, 0, 0));
 			}
 
-			G.test = new LuaFunc((LL) => {
-
-				Lua.PrintStack(LL, "L");
-
-				return 0;
-			});
-
 			while (true) {
 				Console.Write(Prompt);
 				if (!Emul.ErrorCheck(L, Lua.LoadString(L, Console.ReadLine())))

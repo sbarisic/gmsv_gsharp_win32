@@ -20,10 +20,31 @@ namespace gmsv_gsharp_win32 {
 			_G.Thread.Spawn = new LuaFunc((LL) => {
 				IntPtr K = Lua.NewThread(LL);
 				Lua.Pop(LL);
-				Lua.XMove(LL, K, 1);
+				Lua.XMove(LL, K, 2);
 				new Thread(() => {
-					Lua.PCall(K, 0, 0, 0);
+					if (Lua.PCall(K, 0, 0, 0) != 0)
+						GMod.Print(Lua.ToString(K, -1));
 				}).Start();
+				return 0;
+			});
+
+			_G.Thread.Sleep = new LuaFunc((LL) => {
+				int N = (int)Lua.ToNumber(LL, -1);
+				Thread.Sleep(N);
+				return 0;
+			});
+
+			List<string> StrList = new List<string>();
+
+			_G.Thread.Print = new LuaFunc((LL) => {
+				StrList.Add(Lua.ToString(LL, -1));
+				return 0;
+			});
+
+			_G.Thread.Flush = new LuaFunc((LL) => {
+				foreach (var S in StrList)
+					Console.WriteLine(S);
+				StrList.Clear();
 				return 0;
 			});
 
