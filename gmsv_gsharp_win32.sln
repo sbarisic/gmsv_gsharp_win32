@@ -8,8 +8,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gMulator", "gMulator\gMulat
 		{D8E32A1F-2508-49E4-97D6-9D63CFC9420B} = {D8E32A1F-2508-49E4-97D6-9D63CFC9420B}
 	EndProjectSection
 EndProject
-Project("{002A2DE9-8BB6-484D-9802-7E4AD4084715}") = "gmsv_d_win32", "gmsv_d_win32\gmsv_d_win32.visualdproj", "{B3EED551-FEC6-43D1-B92F-EFA5DC311174}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,16 +38,6 @@ Global
 		{751E1014-35D3-4894-B5E1-BE4D8623DEFD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{751E1014-35D3-4894-B5E1-BE4D8623DEFD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{751E1014-35D3-4894-B5E1-BE4D8623DEFD}.Release|Win32.ActiveCfg = Release|Any CPU
-		{B3EED551-FEC6-43D1-B92F-EFA5DC311174}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{B3EED551-FEC6-43D1-B92F-EFA5DC311174}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{B3EED551-FEC6-43D1-B92F-EFA5DC311174}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{B3EED551-FEC6-43D1-B92F-EFA5DC311174}.Debug|Win32.ActiveCfg = Debug|Win32
-		{B3EED551-FEC6-43D1-B92F-EFA5DC311174}.Debug|Win32.Build.0 = Debug|Win32
-		{B3EED551-FEC6-43D1-B92F-EFA5DC311174}.Release|Any CPU.ActiveCfg = Release|Win32
-		{B3EED551-FEC6-43D1-B92F-EFA5DC311174}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{B3EED551-FEC6-43D1-B92F-EFA5DC311174}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{B3EED551-FEC6-43D1-B92F-EFA5DC311174}.Release|Win32.ActiveCfg = Release|Win32
-		{B3EED551-FEC6-43D1-B92F-EFA5DC311174}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
