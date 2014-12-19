@@ -51,21 +51,3 @@ function T(n)
 		end
 	end)
 end
-
-function unrequire2( modName )
-	if( not modName ) then return end
-	local _R = debug.getregistry()
-	local moduleMetatable = _R["_LOADLIB"]
-
-
-	package.loaded[ modName ] = nil
-	_G[ modName ] = nil
-	for k, ud in pairs( _R ) do
-		if( (type(k) == "string") and string.find( k, "^LOADLIB: .+gm.._" .. modName .. "_.+%.dll$" ) and (type(ud) == "_LOADLIB") and (getmetatable(ud) == moduleMetatable) ) then
-			print( "Unloading: " .. k )
-			moduleMetatable.__gc( _R[ k ] )
-			_R[ k ] = nil
-			_MODULES[ modName ] = nil
-		end
-	end
-end

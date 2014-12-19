@@ -1,0 +1,5 @@
+E:\Projects\gmsv_gsharp_win32\GSharpTest\obj\Debug\GSharpTest.csprojResolveAssemblyReference.cache
+E:\Projects\gmsv_gsharp_win32\bin\GSharpTest.exe
+E:\Projects\gmsv_gsharp_win32\bin\GSharpTest.pdb
+E:\Projects\gmsv_gsharp_win32\GSharpTest\obj\Debug\GSharpTest.exe
+E:\Projects\gmsv_gsharp_win32\GSharpTest\obj\Debug\GSharpTest.pdb

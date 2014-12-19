@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gMulator", "gMulator\gMulat
 		{D8E32A1F-2508-49E4-97D6-9D63CFC9420B} = {D8E32A1F-2508-49E4-97D6-9D63CFC9420B}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GSharpTest", "GSharpTest\GSharpTest.csproj", "{8012D601-BE5C-4EBD-913E-822FB4377496}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,16 @@ Global
 		{751E1014-35D3-4894-B5E1-BE4D8623DEFD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{751E1014-35D3-4894-B5E1-BE4D8623DEFD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{751E1014-35D3-4894-B5E1-BE4D8623DEFD}.Release|Win32.ActiveCfg = Release|Any CPU
+		{8012D601-BE5C-4EBD-913E-822FB4377496}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8012D601-BE5C-4EBD-913E-822FB4377496}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8012D601-BE5C-4EBD-913E-822FB4377496}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8012D601-BE5C-4EBD-913E-822FB4377496}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8012D601-BE5C-4EBD-913E-822FB4377496}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{8012D601-BE5C-4EBD-913E-822FB4377496}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8012D601-BE5C-4EBD-913E-822FB4377496}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8012D601-BE5C-4EBD-913E-822FB4377496}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8012D601-BE5C-4EBD-913E-822FB4377496}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8012D601-BE5C-4EBD-913E-822FB4377496}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
