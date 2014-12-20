@@ -6,6 +6,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 
 using GSharp;
+using GSharp.Dynamic;
 
 namespace GSharpTest {
 	unsafe class Program {
@@ -18,7 +19,7 @@ namespace GSharpTest {
 
 		static void Main(string[] args) {
 			Console.Title = "GSharp Test";
-			Console.WriteLine("GShap Test");
+			//Console.WriteLine("GShap Test");
 
 			L = Lua.NewState();
 			Lua.OpenLibs(L);
@@ -39,21 +40,25 @@ namespace GSharpTest {
 			});
 			Lua.SetGlobal(L, "print");
 
-			Lua.PushCFunction(L, (LL) => {
-				Lua.Close(LL);
-				Environment.Exit(0);
-				return 0;
+			ErrorCheck(Lua.LoadString(L, "function wat() print(\"Hello World!\") return wat end"));
+			ErrorCheck(Lua.PCall(L, 0, 0, 0));
+
+
+			dynamic Env = new LuaState(L);
+
+			Env.add = new LuaFunc((IntPtr LL) => { // Todo, dynamic function decomposition
+				Lua.Push(L, Lua.To<double>(L, -1) + Lua.To<double>(L, -2));
+				return 1;
 			});
-			Lua.SetGlobal(L, "quit");
 
-			Lua.PushCFunction(L, (LL) => {
-				Lua.Close(LL);
-				Main(args);
-				return 0;
-			});
-			Lua.SetGlobal(L, "restart");
-
-
+			Env.wot = Env.wat();
+			Env.array = new double[] { 2, 3, Env.add(1, 3) };
+			Env.dict = new Dictionary<string, LuaFunc>() {
+				{ "wotwat", (LL) => {
+					Console.WriteLine("Hello wotwat world!");
+					return 0;
+				}}
+			};
 
 			while (true) {
 				Console.Write(">> ");

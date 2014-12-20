@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Runtime.InteropServices;
 
 namespace GSharp {
@@ -381,7 +382,7 @@ namespace GSharp {
 		public static extern void Call(IntPtr State, int NArgs, int NResults);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "lua_pcall")]
-		public static extern int PCall(IntPtr State, int I, int I2, int I3);
+		public static extern int PCall(IntPtr State, int NArgs, int NResults, int ErrorFunc);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "lua_cpcall")]
 		public static extern int CPCall(IntPtr State, LuaFunc F, IntPtr P);
@@ -449,17 +450,41 @@ namespace GSharp {
 				Lua.PushString(L, O.ToString());
 			else if (O is int)
 				Lua.PushInteger(L, (int)O);
-			else if (O is float || O is double)
+			else if (O is float)
+				Lua.PushNumber(L, (double)(float)O);
+			else if (O is double)
 				Lua.PushNumber(L, (double)O);
 			else if (O is LuaFunc)
 				Lua.PushCFunction(L, (LuaFunc)O);
 			else if (O is bool)
 				Lua.PushBoolean(L, (bool)O ? 1 : 0);
-			else
+			else if (O is Dynamic.LuaObject)
+				((Dynamic.LuaObject)O).Deref();
+			else if (O is Array) {
+				Array A = (Array)O;
+				Lua.CreateTable(L, A.Length, 0);
+				for (int i = 0; i < A.Length; i++) {
+					Push(L, i);
+					Push(L, A.GetValue(i));
+					Lua.SetTable(L, -3);
+				}
+			} else if (O is IDictionary) {
+				IDictionary D = (IDictionary)O;
+				Lua.CreateTable(L, 0, D.Count);
+				foreach (var K in D.Keys) {
+					Push(L, K);
+					Push(L, D[K]);
+					Lua.SetTable(L, -3);
+				}
+			} else
 				throw new Exception("Invalid type " + O.GetType().FullName);
 		}
 
-		public static object To(IntPtr L, int I = -1, params string[] Pth) {
+		public static T To<T>(IntPtr L, int I = -1) {
+			return (T)To(L, I);
+		}
+
+		public static object To(IntPtr L, int I = -1) {
 			int T = Lua.Type(L, I);
 
 			switch (T) {
@@ -468,6 +493,8 @@ namespace GSharp {
 				case TNUMBER:
 					return Lua.ToNumber(L, I);
 				case TFUNCTION: {
+						if (!IsCFunction(L, I))
+							return new Dynamic.LuaObject(L).Deref();
 						LuaFunc LF = Lua.ToCFunction(L, I);
 						if (!LuaFuncs.Contains(LF))
 							LuaFuncs.Add(LF);
@@ -475,13 +502,10 @@ namespace GSharp {
 					}
 				case TBOOLEAN:
 					return Lua.ToBoolean(L, I);
-
-				case TNIL: {
-						return null;
-					}
-				case TTABLE: {
-						throw new NotImplementedException();
-					}
+				case TNIL:
+					return null;
+				case TTABLE:
+					return new Dynamic.LuaObject(L).Deref();
 			}
 
 			return null;
