@@ -46,6 +46,10 @@ namespace GSharpTest {
 
 			dynamic Env = new LuaState(L);
 
+			Env.write = new Action<string>((Str) => {
+				Console.WriteLine(Str);
+			});
+
 			Env.add = new LuaFunc((IntPtr LL) => { // Todo, dynamic function decomposition
 				Lua.Push(L, Lua.To<double>(L, -1) + Lua.To<double>(L, -2));
 				return 1;

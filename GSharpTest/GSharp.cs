@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Runtime.InteropServices;
 
+using GSharp.Dynamic;
+
 namespace GSharp {
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public delegate int LuaFunc(IntPtr L);
@@ -476,6 +478,9 @@ namespace GSharp {
 					Push(L, D[K]);
 					Lua.SetTable(L, -3);
 				}
+			} else if (O is Delegate) {
+				LuaFunc F = ((Delegate)O).CreateLuaDelegateInvoker();
+				Lua.PushCFunction(L, F);
 			} else
 				throw new Exception("Invalid type " + O.GetType().FullName);
 		}

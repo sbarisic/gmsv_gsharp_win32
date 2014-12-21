@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GSharp.cs" />
+    <Compile Include="GSharpDelegates.cs" />
     <Compile Include="GSharpDynamic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
