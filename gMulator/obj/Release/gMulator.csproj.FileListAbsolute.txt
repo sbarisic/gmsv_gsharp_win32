@@ -1,0 +1,9 @@
+E:\Projects\gmsv_gsharp_win32\bin\script\IO.cs
+E:\Projects\gmsv_gsharp_win32\bin\script\PrintFuncs.cs
+E:\Projects\gmsv_gsharp_win32\bin\script\Requires.cs
+E:\Projects\gmsv_gsharp_win32\bin\script\autorun.lua
+E:\Projects\gmsv_gsharp_win32\bin\gMulator.exe.config
+E:\Projects\gmsv_gsharp_win32\bin\gMulator.exe
+E:\Projects\gmsv_gsharp_win32\bin\gMulator.pdb
+E:\Projects\gmsv_gsharp_win32\gMulator\obj\Release\gMulator.exe
+E:\Projects\gmsv_gsharp_win32\gMulator\obj\Release\gMulator.pdb

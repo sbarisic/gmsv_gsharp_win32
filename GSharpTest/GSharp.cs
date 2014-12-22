@@ -23,6 +23,7 @@ namespace GSharp {
 		const string LIBNAME = "lua_shared.dll";
 		const CallingConvention CConv = CallingConvention.Cdecl;
 		const CharSet CSet = CharSet.Auto;
+		const UnmanagedType StringType = UnmanagedType.LPStr;
 
 		public const int TNONE = -1;
 		public const int TNIL = 0;
@@ -52,13 +53,13 @@ namespace GSharp {
 		public static extern int GetMetaField(IntPtr State, int I, IntPtr S);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "luaL_getmetafield")]
-		public static extern int GetMetaField(IntPtr State, int I, [MarshalAs(UnmanagedType.AnsiBStr)]string S);
+		public static extern int GetMetaField(IntPtr State, int I, [MarshalAs(StringType)]string S);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "luaL_callmeta")]
 		public static extern int CallMeta(IntPtr State, int I, IntPtr S);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "luaL_callmeta")]
-		public static extern int CallMeta(IntPtr State, int I, [MarshalAs(UnmanagedType.AnsiBStr)]string S);
+		public static extern int CallMeta(IntPtr State, int I, [MarshalAs(StringType)]string S);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "luaL_newstate")]
 		public static extern IntPtr NewState();
@@ -100,16 +101,20 @@ namespace GSharp {
 		public static extern int TypeError(IntPtr State, int I, IntPtr S);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "luaL_typerror")]
-		public static extern int TypeError(IntPtr State, int I, [MarshalAs(UnmanagedType.AnsiBStr)]string S);
+		public static extern int TypeError(IntPtr State, int I, [MarshalAs(StringType)]string S);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "luaL_argerror")]
 		public static extern int ArgError(IntPtr State, int I, IntPtr S);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "luaL_argerror")]
-		public static extern int ArgError(IntPtr State, int I, [MarshalAs(UnmanagedType.AnsiBStr)]string S);
+		public static extern int ArgError(IntPtr State, int I, [MarshalAs(StringType)]string S);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "luaL_checklstring")]
-		public static extern IntPtr CheckLString(IntPtr State, int I, int L);
+		public static extern IntPtr CheckLString(IntPtr State, int I, IntPtr L);
+
+		public static string CheckString(IntPtr State, int I, IntPtr L) {
+			return Marshal.PtrToStringAnsi(CheckLString(State, I, L));
+		}
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "luaL_optlstring")]
 		public static extern IntPtr OptLString(IntPtr State, int I, string S);
@@ -148,7 +153,7 @@ namespace GSharp {
 		public static extern int Error(IntPtr State, IntPtr S);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "luaL_error")]
-		public static extern int Error(IntPtr State, [MarshalAs(UnmanagedType.AnsiBStr)]string S);
+		public static extern int Error(IntPtr State, [MarshalAs(StringType)]string S);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "luaL_ref")]
 		public static extern int Ref(IntPtr State, int I);
@@ -160,7 +165,7 @@ namespace GSharp {
 		public static extern int LoadFile(IntPtr State, IntPtr S);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "luaL_loadfile")]
-		public static extern int LoadFile(IntPtr State, [MarshalAs(UnmanagedType.AnsiBStr)]string S);
+		public static extern int LoadFile(IntPtr State, [MarshalAs(StringType)]string S);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "luaL_loadbuffer")]
 		public static extern int LoadBuffer(IntPtr State, string S, int I, string S2);
@@ -169,7 +174,7 @@ namespace GSharp {
 		public static extern int LoadString(IntPtr State, IntPtr S);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "luaL_loadstring")]
-		public static extern int LoadString(IntPtr State, [MarshalAs(UnmanagedType.AnsiBStr)]string S);
+		public static extern int LoadString(IntPtr State, [MarshalAs(StringType)]string S);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "luaL_gsub")]
 		public static extern IntPtr GSub(IntPtr State, string S, string S2, string S3);
@@ -243,7 +248,7 @@ namespace GSharp {
 		public static extern int Load(IntPtr State, LuaReader R, IntPtr Data, IntPtr ChunkName);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "lua_load")]
-		public static extern int Load(IntPtr State, LuaReader R, IntPtr Data, [MarshalAs(UnmanagedType.AnsiBStr)]string ChunkName);
+		public static extern int Load(IntPtr State, LuaReader R, IntPtr Data, [MarshalAs(StringType)]string ChunkName);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "lua_tonumber")]
 		public static extern double ToNumber(IntPtr State, int I);
@@ -255,7 +260,7 @@ namespace GSharp {
 		public static extern bool ToBoolean(IntPtr State, int I);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "lua_tolstring")]
-		//[return: MarshalAs(UnmanagedType.LPStr)]
+		//[return: MarshalAs(StringType)]
 		public static extern IntPtr ToLString(IntPtr State, int I, IntPtr L);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "lua_objlen")]
@@ -289,7 +294,7 @@ namespace GSharp {
 		public static extern void PushString(IntPtr State, IntPtr S);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "lua_pushstring")]
-		public static extern void PushString(IntPtr State, [MarshalAs(UnmanagedType.AnsiBStr)]string S);
+		public static extern void PushString(IntPtr State, [MarshalAs(StringType)]string S);
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "lua_pushcclosure")]
 		static extern void _PushCClosure(IntPtr State, LuaFunc F, int N = 0);
@@ -320,7 +325,7 @@ namespace GSharp {
 		}
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "lua_getfield")]
-		public static extern void GetField(IntPtr State, int I, [MarshalAs(UnmanagedType.AnsiBStr)]string S);
+		public static extern void GetField(IntPtr State, int I, [MarshalAs(StringType)]string S);
 
 		public static void GetGlobal(IntPtr State, string S) {
 			GetField(State, GLOBALSINDEX, S);
@@ -362,7 +367,7 @@ namespace GSharp {
 		}
 
 		[DllImport(LIBNAME, CallingConvention = CConv, CharSet = CSet, EntryPoint = "lua_setfield")]
-		public static extern void SetField(IntPtr State, int I, [MarshalAs(UnmanagedType.AnsiBStr)]string S);
+		public static extern void SetField(IntPtr State, int I, [MarshalAs(StringType)]string S);
 
 		public static void SetGlobal(IntPtr State, string S) {
 			SetField(State, GLOBALSINDEX, S);
@@ -479,7 +484,7 @@ namespace GSharp {
 					Lua.SetTable(L, -3);
 				}
 			} else if (O is Delegate) {
-				LuaFunc F = ((Delegate)O).CreateLuaDelegateInvoker();
+				LuaFunc F = ((Delegate)O).CreateLuaDelegateInvoker(L);
 				Lua.PushCFunction(L, F);
 			} else
 				throw new Exception("Invalid type " + O.GetType().FullName);
@@ -560,11 +565,9 @@ namespace GSharp {
 		}
 
 		public static void Print(object O) {
-			lock (Lock) {
-				Lua.GetGlobal(State, "print");
-				Lua.PushString(State, O != null ? O.ToString() : "NULL");
-				Lua.Call(State, 1, 0);
-			}
+			Lua.GetGlobal(State, "print");
+			Lua.PushString(State, O != null ? O.ToString() : "NULL");
+			Lua.PCall(State, 1, 0, 0);
 		}
 
 		public static void MsgC(int R, int G, int B, string Msg) {

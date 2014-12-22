@@ -9,12 +9,42 @@ using GSharp;
 using GSharp.Dynamic;
 
 namespace GSharpTest {
-	unsafe class Program {
+	public unsafe class Program {
 		static IntPtr L;
 
 		static void ErrorCheck(int Ret) {
 			if (Ret != 0)
-				Console.WriteLine("error: {0}", Lua.ToString(L, -1));
+				throw new Exception(Lua.ToString(L, -1));
+		}
+
+		static Func<string, double, double> Act = null;
+		public static int LuaF(IntPtr L) {
+			Lua.Push(L, Act(Lua.CheckString(L, -2, IntPtr.Zero), Lua.CheckNumber(L, -1)));
+			return 0;
+		}
+
+		public static void F(string Str, double D, int I) {
+			Console.WriteLine("String: {0}\nDouble: {1}\nInt: {2}", Str, D, I);
+		}
+
+		public static double add(double A, double B) {
+			return A + B;
+		}
+
+		public static void wotwat() {
+			Console.WriteLine("Hello wotwat world!");
+		}
+
+		static void Init() {
+			dynamic Env = new LuaState(L);
+
+			Env.func = new Action<string, double, int>(F);
+			Env.add = new Func<double, double, double>(add);
+
+			Env.array = new double[] { 2, 3, Env.add(1, 3) };
+			Env.dict = new Dictionary<string, Action>() {
+				{ "wotwat", wotwat }
+			};
 		}
 
 		static void Main(string[] args) {
@@ -40,30 +70,17 @@ namespace GSharpTest {
 			});
 			Lua.SetGlobal(L, "print");
 
-			ErrorCheck(Lua.LoadString(L, "function wat() print(\"Hello World!\") return wat end"));
+			ErrorCheck(Lua.LoadString(L, "function helloworld() print(\"Hello World!\") return helloworld end"));
+			ErrorCheck(Lua.PCall(L, 0, 0, 0));
+			ErrorCheck(Lua.LoadString(L, "function printt(t) for k,v in pairs(t) do print(tostring(k) .. \" - \" .. tostring(v)) end end"));
 			ErrorCheck(Lua.PCall(L, 0, 0, 0));
 
-
-			dynamic Env = new LuaState(L);
-
-			Env.write = new Action<string>((Str) => {
-				Console.WriteLine(Str);
-			});
-
-			Env.add = new LuaFunc((IntPtr LL) => { // Todo, dynamic function decomposition
-				Lua.Push(L, Lua.To<double>(L, -1) + Lua.To<double>(L, -2));
-				return 1;
-			});
-
-			Env.wot = Env.wat();
-			Env.array = new double[] { 2, 3, Env.add(1, 3) };
-			Env.dict = new Dictionary<string, LuaFunc>() {
-				{ "wotwat", (LL) => {
-					Console.WriteLine("Hello wotwat world!");
-					return 0;
-				}}
-			};
-
+			//try {
+				Init();
+			/*} catch (Exception) {
+				throw;
+			}//*/
+			GSharp.Dynamic.Delegates.Dump();
 			while (true) {
 				Console.Write(">> ");
 				try {

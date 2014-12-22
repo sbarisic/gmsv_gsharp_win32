@@ -1,0 +1,5 @@
+E:\Projects\gmsv_gsharp_win32\bin\GSharpTest.exe.config
+E:\Projects\gmsv_gsharp_win32\bin\GSharpTest.exe
+E:\Projects\gmsv_gsharp_win32\bin\GSharpTest.pdb
+E:\Projects\gmsv_gsharp_win32\GSharpTest\obj\Release\GSharpTest.exe
+E:\Projects\gmsv_gsharp_win32\GSharpTest\obj\Release\GSharpTest.pdb

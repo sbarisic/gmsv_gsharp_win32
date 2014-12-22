@@ -34,10 +34,6 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="dotOmegle">
-      <HintPath>..\..\..\Dropbox\Projects\OmegleCLI\Spewbawt\bin\Release\dotOmegle.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="RGiesecke.DllExport.Metadata">
       <HintPath>..\packages\UnmanagedExports.1.2.6\lib\net\RGiesecke.DllExport.Metadata.dll</HintPath>
       <Private>False</Private>
@@ -52,8 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GSharpDelegates.cs" />
+    <Compile Include="GSharpDynamic.cs" />
     <Compile Include="GSharpTest.cs" />
-    <Compile Include="GSharpSrc.cs" />
+    <Compile Include="GSharp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
