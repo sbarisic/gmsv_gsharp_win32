@@ -31,7 +31,11 @@ namespace gmsv_gsharp_win32 {
 
 		[DllExport("gmod13_open", CallingConvention = CallingConvention.Cdecl)]
 		public static int Open(IntPtr L) {
-			dynamic Env = new LuaState(L);
+			Lua.GetGlobal(L, "print");
+			Lua.PushString(L, "Hello GSharp World!");
+			Lua.PCall(L, 1, 0, 0);
+
+			/*dynamic Env = new LuaState(L);
 			print = Env.print;
 
 			Env.func = new Action<string, double>(F);
@@ -42,7 +46,7 @@ namespace gmsv_gsharp_win32 {
 				{ "wotwat", wotwat }
 			};
 
-			print("GSharp loaded!");
+			print("GSharp loaded!");*/
 			return 0;
 		}
 

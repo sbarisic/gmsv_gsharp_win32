@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using System.Runtime.InteropServices;
+using System.IO;
 
 using GSharp.Dynamic;
 
@@ -20,10 +21,22 @@ namespace GSharp {
 
 	public static unsafe class Lua {
 		static List<LuaFunc> LuaFuncs = new List<LuaFunc>();
-		const string LIBNAME = "lua_shared.dll";
+		const string LIBNAME = "lua_shared";
 		const CallingConvention CConv = CallingConvention.Cdecl;
 		const CharSet CSet = CharSet.Auto;
 		const UnmanagedType StringType = UnmanagedType.LPStr;
+
+		static Lua() {
+			string CurDir = Environment.CurrentDirectory;
+			string LD_LIBRARY = Environment.GetEnvironmentVariable("LD_LIBRARY_PATH");
+			if (LD_LIBRARY != null && LD_LIBRARY.Length > 0)
+				LD_LIBRARY += ";";
+			else if (LD_LIBRARY == null)
+				LD_LIBRARY = "";
+			LD_LIBRARY += CurDir;
+			Console.WriteLine("LD_LIBRARY_PATH = {0}", LD_LIBRARY);
+			Environment.SetEnvironmentVariable("LD_LIBRARY_PATH", LD_LIBRARY);
+		}
 
 		public const int TNONE = -1;
 		public const int TNIL = 0;

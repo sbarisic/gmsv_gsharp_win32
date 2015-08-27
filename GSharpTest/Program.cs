@@ -9,7 +9,19 @@ using GSharp;
 using GSharp.Dynamic;
 
 namespace GSharpTest {
-	public unsafe class Program {
+	public class Program {
+		static void Main(string[] Args) {
+			try {
+				Prog.TheMain();
+			} catch (Exception E) {
+				Console.WriteLine("Oh noes! A FUCKING EXCEPTION OCCURED!");
+				Console.WriteLine(E.GetType());
+				Console.WriteLine(E.Message);
+			}
+		}
+	}
+
+	public unsafe class Prog {
 		static IntPtr L;
 
 		static void ErrorCheck(int Ret) {
@@ -47,7 +59,7 @@ namespace GSharpTest {
 			};
 		}
 
-		static void Main(string[] args) {
+		public static void TheMain() {
 			Console.Title = "GSharp Test";
 			//Console.WriteLine("GShap Test");
 
@@ -76,7 +88,7 @@ namespace GSharpTest {
 			ErrorCheck(Lua.PCall(L, 0, 0, 0));
 
 			//try {
-				Init();
+			Init();
 			/*} catch (Exception) {
 				throw;
 			}//*/
